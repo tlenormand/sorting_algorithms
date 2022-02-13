@@ -5,6 +5,7 @@
 /* LIBRARIES */
 
 #include <stddef.h>
+#include <assert.h>
 
 /* -------------------------------------------------- */
 /* STRUCTURES */
@@ -47,5 +48,9 @@ void cocktail_sort_list(listint_t **list);
 void counting_sort(int *array, size_t size);
 void merge_sort(int *array, size_t size);
 void fusion(int *array, int *left, int *right, size_t size);
+void swap(int *a, int *b);
+int partition(int a[], int low, int high, size_t size);
+void a_quick_sort(int *array, int low, int high, size_t size);
+
 
 #endif /* SORT_H */
