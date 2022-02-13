@@ -46,6 +46,14 @@ void shell_sort(int *array, size_t size);
 void cocktail_sort_list(listint_t **list);
 void counting_sort(int *array, size_t size);
 void merge_sort(int *array, size_t size);
-void fusion(int *array, int *left, int *right, size_t size);
+void split_merge(int *tmp, int start, int end, int *array);
+void merge(int *array, int start, int mid, int end, int *tmp);
+void copy_array(int *array, int start, int end, int *tmp);
+int len_array(int *array);
+void heap_sort(int *array, size_t size);
+void heapify(int *array, size_t size, size_t i, size_t size_arr);
+void radix_sort(int *array, size_t size);
+void swap_array(int *array, size_t left, size_t right);
+void bitonic_sort(int *array, size_t size);
 
 #endif /* SORT_H */

@@ -14,57 +14,123 @@
 
 void merge_sort(int *array, size_t size)
 {
-	int *left, *right;
-	size_t i;
-	
+	int *tmp;
+
+	tmp = malloc(sizeof(int) * size);
+
 	if (!array || size < 2)
 		return;
-	
-	left = malloc(sizeof(int) * size / 2 + 1);
-	right = malloc(sizeof(int) * size / 2 + 1);
 
-	if (!left && !right)
-		return;
-
-	for (i = 0; i < size / 2; i++)
-		left[i] = array[i];
-
-	for (i = size / 2; i < size; i++)
-		right[i - size / 2] = array[i];
-
-	fusion(merge_sort(left, size / 2), merge_sort(right, size / 2), size / 2);
+	copy_array(array, 0, size, tmp);
+	split_merge(tmp, 0, size, array);
 }
 
-void fusion(int *array, int *left, int *right, size_t size)
+
+/**
+ * split_merge - recursive function that splid the array in two and
+ * then merge the new array sorted
+ *
+ * @tmp: array to split
+ * @start: index to start
+ * @end: index to end
+ * @array: array to split
+ *
+ * Return: void
+ */
+
+void split_merge(int *tmp, int start, int end, int *array)
 {
-	size_t len_left, len_right, i, j;
-	
-	if (!left || !right)
+	int mid;
+
+	if (end - start <= 1)
 		return;
 
-	for (i = 0; i < size - 1; i++)
-		len_left++;
+	mid = (end + start) / 2;
 
-	len_right = len_left;
+	split_merge(array, start, mid, tmp);
+	split_merge(array, mid, end, tmp);
+	merge(tmp, start, mid, end, array);
+}
 
-	if (left[0] < right[0])
+
+/**
+ * merge - function that merge two array together
+ * beggining by the smallest index 0
+ * copied into the right array
+ *
+ * @left: left array given
+ * @start: index to start
+ * @mid: middle of the new array merged
+ * @end: index to end
+ * @right: right array given
+ *
+ * Return: void
+ */
+
+void merge(int *left, int start, int mid, int end, int *right)
+{
+	int i, j, k;
+
+	printf("Merging...\n");
+	printf("[left]: ");
+	print_array(&left[start], mid - start);
+	printf("[right]: ");
+	print_array(&right[mid], end - mid);
+
+	i = start, j = mid;
+	for (k = start; k < end; k++)
 	{
-		for (i = 0; i < len_left - 1; i++)
-			array[i] = left[i];
-		for (j = 0; j < len_right - 1; j++)
+		if (i < mid && (j >= end || left[i] <= left[j]))
 		{
-			array[i] = right[j];
-			i++;
+			right[k] = left[i];
+			i = i + 1;
+		}
+		else
+		{
+			right[k] = left[j];
+			j = j + 1;
 		}
 	}
-	else if (right[0] < left[0])
-	{
-		for (i = 0; i < len_right - 1; i++)
-			array[i] = right[i];
-		for (j = 0; j < len_left - 1; j++)
-		{
-			array[i] = left[j];
-			i++;
-		}
-	}
+
+	printf("[done]: ");
+	print_array(&right[start], end - start);
+}
+
+
+/**
+ * copy_array - function that copy an array into another
+ *
+ * @array: address of the array to copy
+ * @start: start index where begging the copy
+ * @end: end index where stop the copy
+ * @tmp: address of the array to copy into
+ *
+ * Return: void
+ */
+
+void copy_array(int *array, int start, int end, int *tmp)
+{
+	int k;
+
+	for (k = start; k < end; k++)
+		tmp[k] = array[k];
+}
+
+
+/**
+ * len_array - function that count the length of an array
+ *
+ * @array: array to count the length
+ *
+ * Return: length of the array
+ */
+
+int len_array(int *array)
+{
+	int i = 0;
+
+	while (array[i] != '\0')
+		i++;
+
+	return (i);
 }
