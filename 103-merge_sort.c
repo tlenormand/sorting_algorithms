@@ -23,6 +23,8 @@ void merge_sort(int *array, size_t size)
 
 	copy_array(array, 0, size, tmp);
 	split_merge(tmp, 0, size, array);
+
+	free(tmp);
 }
 
 
