@@ -50,6 +50,9 @@ void split_merge(int *tmp, int start, int end, int *array)
 	split_merge(array, start, mid, tmp);
 	split_merge(array, mid, end, tmp);
 	merge(tmp, start, mid, end, array);
+
+	printf("[done]: ");
+	print_array(&array[start], end - start);
 }
 
 
@@ -90,9 +93,6 @@ void merge(int *left, int start, int mid, int end, int *right)
 			j++;
 		}
 	}
-
-	printf("[done]: ");
-	print_array(&right[start], end - start);
 }
 
 
