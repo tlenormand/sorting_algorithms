@@ -48,6 +48,7 @@ int partition(int a[], int low, int high, size_t size);
 void swap(int *a, int *b);
 void shell_sort(int *array, size_t size);
 void cocktail_sort_list(listint_t **list);
+void move_list(listint_t **list);
 void counting_sort(int *array, size_t size);
 void merge_sort(int *array, size_t size);
 void split_merge(int *tmp, int start, int end, int *array);
