@@ -1,4 +1,5 @@
 #include "sort.h"
+#include <stdio.h>
 
 /**
  * cocktail_sort_list - function that sorts a doubly linked list of integers
@@ -16,35 +17,32 @@ void cocktail_sort_list(listint_t **list)
 
 	if (list == NULL || !*list || !(*list)->next)
 		return;
-
-	tmp = *list;
-	browse = *list;
-
+	tmp = *list, browse = *list;
 	while (browse->next != NULL)
 		browse = browse->next, right++;
-
 	browse = (*list)->next;
 	while (browse && right > left)
 	{
 		for (i = left; i <= right; i++)
 		{
 			if (browse && browse->n < tmp->n)
-				swap_node(tmp, browse), print_list(*list), browse = browse->next;
+			{
+				swap_node(tmp, browse);
+				move_list(&*list);
+				print_list(*list), browse = browse->next;
+			}
 			else
 				tmp = tmp->next;
 			if (browse->next)
 				browse = browse->next;
 		}
-		right--;
-
-		tmp = browse, browse = browse->prev;
+		right--, tmp = browse, browse = browse->prev;
 		for (i = right; i >= left; i--)
 		{
 			if (browse->n > tmp->n)
 			{
 				swap_node(browse, tmp);
-				if ((*list)->prev)
-					*list = (*list)->prev;
+				move_list(&*list);
 				print_list(*list), browse = browse->prev;
 			}
 			else
@@ -60,8 +58,8 @@ void cocktail_sort_list(listint_t **list)
 /**
  * swap_node - function that swap two nodes in a double linked list
  *
- * @left: address onf the left node
- * @right: address onf the right node
+ * @left: address of the left node
+ * @right: address of the right node
  *
  * Return: void
  */
@@ -78,4 +76,19 @@ void swap_node(listint_t *left, listint_t *right)
 
 	right->next = left;
 	left->prev = right;
+}
+
+
+/**
+ * move_list - function that move the head of a list
+ *
+ * @list: address of the list
+ *
+ * Return: void
+ */
+
+void move_list(listint_t **list)
+{
+	while ((*list)->prev)
+		*list = (*list)->prev;
 }
