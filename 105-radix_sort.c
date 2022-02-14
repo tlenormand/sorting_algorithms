@@ -12,7 +12,7 @@
 
 void radix_sort(int *array, size_t size)
 {
-	int max = 0, j, modulo = 10, divide = 1, unit = 0, idx;
+	int max = 0, j, modulo = 10, divide = 1, unit = 0, idx, idx_swap;
 	size_t i, k;
 
 	if (!array || size < 2)
@@ -36,7 +36,13 @@ void radix_sort(int *array, size_t size)
 					idx = k;
 				}
 			}
-			swap_array(array, i, idx);
+			idx_swap = idx - 1;
+			while (i < (size_t)idx)
+			{
+				swap_array(array, idx_swap, idx);
+				idx--;
+				idx_swap--;
+			}
 		}
 		divide = modulo;
 		modulo *= 10;
@@ -66,4 +72,24 @@ void swap_array(int *array, size_t left, size_t right)
 		array[left] = array[right];
 		array[right] = tmp;
 	}
+}
+
+
+/**
+ * copy_array - function that copy an array into another
+ *
+ * @array: address of the array to copy
+ * @start: start index where begging the copy
+ * @end: end index where stop the copy
+ * @tmp: address of the array to copy into
+ *
+ * Return: void
+ */
+
+void copy_array(int *array, int start, int end, int *tmp)
+{
+	int k;
+
+	for (k = start; k < end; k++)
+		tmp[k] = array[k];
 }
