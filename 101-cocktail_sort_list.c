@@ -11,11 +11,14 @@
 
 void cocktail_sort_list(listint_t **list)
 {
-	listint_t *tmp = *list, *browse = *list;
+	listint_t *tmp, *browse;
 	int i, right = 0, left = 0;
 
-	if (!*list || !(*list)->next)
+	if (list == NULL || !*list || !(*list)->next)
 		return;
+
+	tmp = *list;
+	browse = *list;
 
 	while (browse->next != NULL)
 		browse = browse->next, right++;
