@@ -49,6 +49,13 @@ void split_merge(int *tmp, int start, int end, int *array)
 
 	split_merge(array, start, mid, tmp);
 	split_merge(array, mid, end, tmp);
+
+	printf("Merging...\n");
+	printf("[left]: ");
+	print_array(&tmp[start], mid - start);
+	printf("[right]: ");
+	print_array(&tmp[mid], end - mid);
+
 	merge(tmp, start, mid, end, array);
 
 	printf("[Done]: ");
@@ -73,12 +80,6 @@ void split_merge(int *tmp, int start, int end, int *array)
 void merge(int *left, int start, int mid, int end, int *right)
 {
 	int i = start, j = mid, k;
-
-	printf("Merging...\n");
-	printf("[left]: ");
-	print_array(&right[start], mid - start);
-	printf("[right]: ");
-	print_array(&right[mid], end - mid);
 
 	for (k = start; k < end; k++)
 	{
