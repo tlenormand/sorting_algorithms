@@ -51,7 +51,7 @@ void split_merge(int *tmp, int start, int end, int *array)
 	split_merge(array, mid, end, tmp);
 	merge(tmp, start, mid, end, array);
 
-	printf("[done]: ");
+	printf("[Done]: ");
 	print_array(&array[start], end - start);
 }
 
