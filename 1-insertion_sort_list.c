@@ -11,11 +11,13 @@
 
 void insertion_sort_list(listint_t **list)
 {
-	listint_t *browse = *list;
+	listint_t *browse;
 	listint_t *tmp;
 
-	if (!*list || !(*list)->next)
+	if (list == NULL || !*list || !(*list)->next)
 		return;
+
+	browse = *list;
 
 	while (browse)
 	{
