@@ -1,4 +1,5 @@
 #include "sort.h"
+#include <stdio.h>
 
 /**
  * quick_sort_hoare - function that sorts an array of integers
@@ -61,7 +62,7 @@ int partition(int *array, int low, int high, size_t size)
 {
 	int i, j, pivot;
 
-	pivot = array[low];
+	pivot = array[high];
 	i = low - 1;
 	j = high + 1;
 
