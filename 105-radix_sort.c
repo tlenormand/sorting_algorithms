@@ -1,4 +1,5 @@
 #include "sort.h"
+#include <stdio.h>
 
 /**
  * radix_sort - function that sorts an array of integers
@@ -12,7 +13,7 @@
 
 void radix_sort(int *array, size_t size)
 {
-	int max = 0, j, modulo = 10, divide = 1, unit = 0, idx, idx_swap;
+	int max = 0, j, divide = 1, unit = 0, idx, idx_swap;
 	size_t i, k;
 
 	if (!array || size < 2)
@@ -26,13 +27,13 @@ void radix_sort(int *array, size_t size)
 	{
 		for (i = 0; i < size - 1; i++)
 		{
-			unit = (array[i] / divide) % modulo;
+			unit = (array[i] / divide) % 10;
 			idx = i;
 			for (k = i + 1; k < size; k++)
 			{
-				if (unit > (array[k] / divide) % modulo)
+				if (unit > (array[k] / divide) % 10)
 				{
-					unit = (array[k] / divide) % modulo;
+					unit = (array[k] / divide) % 10;
 					idx = k;
 				}
 			}
@@ -44,10 +45,9 @@ void radix_sort(int *array, size_t size)
 				idx_swap--;
 			}
 		}
-		divide = modulo;
-		modulo *= 10;
-		max /= divide;
 		print_array(array, size);
+		divide = divide * 10;
+		max /= 10;
 	}
 }
 
