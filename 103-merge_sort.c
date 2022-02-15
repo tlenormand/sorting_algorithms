@@ -16,10 +16,10 @@ void merge_sort(int *array, size_t size)
 {
 	int *tmp;
 
-	tmp = malloc(sizeof(int) * size);
-
 	if (!array || size < 2)
 		return;
+
+	tmp = malloc(sizeof(int) * size);
 
 	copy_array(array, 0, size, tmp);
 	split_merge(tmp, 0, size, array);
