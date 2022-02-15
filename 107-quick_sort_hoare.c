@@ -1,8 +1,7 @@
 #include "sort.h"
-#include <stdio.h>
 
 /**
- * quick_sort - function that sorts an array of integers
+ * quick_sort_hoare - function that sorts an array of integers
  * in ascending order using the Quick sort algorithm
  *
  * @array: array to sort
@@ -22,6 +21,7 @@ void quick_sort_hoare(int *array, size_t size)
 	a_quick_sort(array, low, high, size);
 }
 
+
 /**
  * a_quick_sort - Main function to launch the algo
  *
@@ -29,7 +29,10 @@ void quick_sort_hoare(int *array, size_t size)
  *@low: First value of the array
  *@high: Last value of the array
  *@size: Size of the array
+ *
+ * Return: void
  */
+
 void a_quick_sort(int *array, int low, int high, size_t size)
 {
 	int pivot;
@@ -42,15 +45,18 @@ void a_quick_sort(int *array, int low, int high, size_t size)
 	}
 }
 
+
 /**
  * partition - Do the partition
  *
- *@a: Array
+ *@array: Array
  *@low: First value of the array
  *@high: Last value of the array
  *@size: Size of the array
+ *
  *Return: i
  */
+
 int partition(int *array, int low, int high, size_t size)
 {
 	int i, j, pivot;
@@ -61,13 +67,13 @@ int partition(int *array, int low, int high, size_t size)
 
 	while (1)
 	{
-		do {
+		do
 			i++;
-		} while (array[i] < pivot);
+		while (array[i] < pivot);
 
-		do {
+		do
 			j--;
-		} while (array[j] > pivot);
+		while (array[j] > pivot);
 
 		if (i >= j)
 			return (j);
@@ -77,12 +83,16 @@ int partition(int *array, int low, int high, size_t size)
 	}
 }
 
+
 /**
  * swap - Function that swap both number
  *
  *@left: First number to swap
  *@right: Second number to swap
+ *
+ * Return: void
  */
+
 void swap(int *left, int *right)
 {
 	int tmp = *left;
