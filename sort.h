@@ -60,5 +60,9 @@ void heapify(int *array, size_t size, size_t i, size_t size_arr);
 void radix_sort(int *array, size_t size);
 void swap_array(int *array, size_t left, size_t right);
 void bitonic_sort(int *array, size_t size);
+void sort_array(int *array, int start, int end, int direction);
+void merge_up(int *array, size_t size);
+void merge_down(int *array, int size);
+void quick_sort_hoare(int *array, size_t size);
 
 #endif /* SORT_H */
