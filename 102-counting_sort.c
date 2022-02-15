@@ -20,7 +20,7 @@ void counting_sort(int *array, size_t size)
 	if (!array || size < 2)
 		return;
 
-	for (j = 0; j < size - 1; j++)
+	for (j = 0; j < size; j++)
 		if (array[j] > max)
 			max = array[j];
 
